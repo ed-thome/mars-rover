@@ -30,8 +30,8 @@ cameras can get a complete view of the surrounding terrain to send back to Earth
 
 A rover’s position and location is represented by a combination of x and y coordinates and a letter representing one of the four cardinal compass points. The plateau is divided up into a grid to simplify navigation. An example position might be 0, 0, N, which means the rover is in the bottom left corner and facing North.
 
-In order to control a rover, NASA sends a simple string of letters. The possible letters are ‘L’, ‘R’ and ‘M’. ‘L’ and ‘R’ make the rover spin 90 degrees left or right respectively, without moving from its current spot. ‘M’ means move forward one grid point, and maintain the same heading.
-Assume that the square directly North from (x, y) is (x, y+1).
+In order to control a rover, NASA sends a simple string of letters. The possible letters are ‘L’, ‘R’ and ‘M’. ‘L’ and ‘R’ make the rover spin 90 degrees left or right respectively, without moving from its current spot. ‘M’ means move forward one grid point in whatever direction the rover is facing, and maintain the same heading.
+Assume that the square directly North from (x, y) is (x, y+1), whereas the square directly East from (x, y) is (x+1, y).
 
 **Input:**
 - The first line of input is the upper-right coordinates of the plateau, the lower-left coordinates are assumed to be 0,0.
@@ -54,21 +54,35 @@ MMRMMRMRRM
 1 3 N  
 5 1 E
 
-### Edge cases
-- Input validation
-- Handle the case where a rover goes past the edge and falls off the plateau
-- If rovers collide, the moving rover should push the static rover one cell in the direction of movement
-
 ### Problem extensions
-- Move the rover backwards when the letter is ‘B’
+- Edge cases
+  - Input validation - tell user is the input is invalid
+  - Notify in output if rover goes past the edge and falls off the plateau
+  - If rovers collide, the moving rover pushes the static rover one cell in the direction of movement
+- Rover movement
+  - Move the rover backwards when the instruction is B
+  - Allow turns to be 90 or 45 degrees with diagonal movement
+    - Lowercase l and r for 45 degrees
+    - Uppercase L and R for 90 degrees
+- Instead of executing all the instructions for a rover at once, execute one instruction for each rover in turn
+  - Example:
+    - First instruction for rover 1
+    - First instruction for rover 2
+    - First instruction for rover 3
+    - Second instruction for rover 1
+    - Second instruction for rover 2
+      - Etc
 - Add obstacles on the plateau
   - Rocks that block the rover from moving
   - Mines that blow up the rover
   - Aliens that move back and forth
   - Sandstorms that throw the rover in a random location within a two-unit radius
-- Shoot laser at obstacles when the letter is ‘L’
-- Change the turns from 90 to 45 degrees with diagonal movement
-- If there are multiple rovers, make them move at the same time instead of waiting for the previous rover to finish
-- Animate the whole plateau with the moving rovers on the console
-- Send new inputs to the rover via the command line or a GUI
+- Add commands
+  - Take samples of rocks and soil
+  - Shoot projectiles to blow up obstacles
+  - Take pictures of aliens
+- Enhance the input/output
+  - Animate the whole plateau with the moving rovers on the console
+  - Send new inputs to the rover via the command line or a GUI
+- Rovers and other entities all move at the same time
 - Anything you think would be cool
