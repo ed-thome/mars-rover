@@ -1,4 +1,7 @@
+![tcJMzYq7PVjyQacEZW5FLH-1920-80 copy](https://user-images.githubusercontent.com/109090387/216695238-88138bf6-46c7-4f1d-9cee-f7806a9ab8a5.png)
+
 # Mars Rover
+
 ## Guidelines
 - Tech stack
   - Javascript or Typescript
@@ -7,7 +10,7 @@
 - Do test-driven development
 - Implement the functionality iteratively
   - Break down the requirements, you can use acceptance criteria if you like
-  - Use a document or tool (Trello/Mural) to track your development tasks
+  - Use a document or tool like Trello to track your work
 - There are many solutions for this problem online but DON’T LOOK AT THEM!
 
 ## Setup
