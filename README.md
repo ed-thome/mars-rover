@@ -6,8 +6,8 @@
   - [Jest](https://jestjs.io/) for running tests
 - Do test-driven development
 - Implement the functionality iteratively
-  - It is recommended to write acceptance criteria for the requirements before starting
-  - Use a tool (Google doc/Trello/Mural) to track your development tasks
+  - Break down the requirements, you can use acceptance criteria if you like
+  - Use a document or tool (Trello/Mural) to track your development tasks
 - There are many solutions for this problem online but DON’T LOOK AT THEM!
 
 ## Setup
