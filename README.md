@@ -54,16 +54,29 @@ MMRMMRMRRM
 1 3 N  
 5 1 E
 
-### Problem extensions
-- Edge cases
-  - Input validation - tell user is the input is invalid
-  - Notify in output if rover goes past the edge and falls off the plateau
-  - If rovers collide, the moving rover pushes the static rover one cell in the direction of movement
-- Rover movement
-  - Move the rover backwards when the instruction is B
-  - Allow turns to be 90 or 45 degrees with diagonal movement
-    - Lowercase l and r for 45 degrees
-    - Uppercase L and R for 90 degrees
+## Modules
+### Module 1 - Happy path
+- Read input
+- Move rovers according to instructions
+- Print output
+
+### Module 2 - Edge cases
+- Input validation
+  - Notify user of error if the input is invalid
+    - Missing file
+    - Invalid format e.g. bad characters
+    - Rover is initialized outside plateau
+- Rover goes over edge and falls off plateau
+  - Stop moving the rover after it falls
+  - In output, include final position plus an indicator that they fell: `1 6 N (fell)`
+
+### Module 3 - Expand rover movement
+- Move the rover backwards when the instruction is B
+- Allow turns to be 90 or 45 degrees with diagonal movement
+  - Lowercase l and r for 45 degrees
+  - Uppercase L and R for 90 degrees
+
+### Module 4 - Enhance the simulation
 - Instead of executing all the instructions for a rover at once, execute one instruction for each rover in turn
   - Example:
     - First instruction for rover 1
@@ -72,17 +85,34 @@ MMRMMRMRRM
     - Second instruction for rover 1
     - Second instruction for rover 2
       - Etc
-- Add obstacles on the plateau
-  - Rocks that block the rover from moving
-  - Mines that blow up the rover
-  - Aliens that move back and forth
-  - Sandstorms that throw the rover in a random location within a two-unit radius
-- Add commands
-  - Take samples of rocks and soil
-  - Shoot projectiles to blow up obstacles
+- Print the whole plateau with the rovers as output. For instance, the expected output from the original example would be:
+
+```
+. . . . . .
+. ↑ . . . .
+. . . . . .
+. . . . . →
+. . . . . .
+```
+
+### Module 5 - Plateau obstacles
+  - Add rocks which block the rover from moving
+  - Sandstorms that throw the rover in a random location within a three-unit radius (including off the plateau)
+  - If rovers collide:
+    - The moving rover pushes the static rover one cell in the direction of movement
+
+### Module 6 - More plateau fun
+- New entities:
+  - Mines that blow up rovers when they are run over
+  - Aliens that move in or out of the ground like prairie dogs every turn  
+- More rover commands
+  - Drill rocks to destroy them
+    - Rover must be facing and adjacent to rock
   - Take pictures of aliens
-- Enhance the input/output
-  - Animate the whole plateau with the moving rovers on the console
-  - Send new inputs to the rover via the command line or a GUI
-- Rovers and other entities all move at the same time
-- Anything you think would be cool
+    - Rover must be facing the alien, max 3 units away, with no obstacles in between, alien out of the ground
+
+### Module 7 - UI and Animation
+- Run the app in the browser
+- Add a form in the UI for specifying the inputs and running the program
+  - Plateau size, rovers, instructions, obstacles, etc
+- Use the [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) to animate the action each turn
