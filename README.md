@@ -106,10 +106,10 @@ MMRMMRMRRM
     - The moving rover pushes the static rover one cell in the direction of movement
 
 ### Module 6 - More plateau fun
-- New entities:
+- New entities
   - Mines that blow up rovers when they are run over
   - Aliens that move in or out of the ground like prairie dogs every turn  
-- More rover commands
+- New rover commands
   - Drill rocks to destroy them
     - Rover must be facing and adjacent to rock
   - Take pictures of aliens
