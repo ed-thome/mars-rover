@@ -93,6 +93,16 @@ describe("parseFile", () => {
         input: "3 3\n1 1",
         error: "Wrong number of lines in input file",
       },
+      {
+        scenario: "rover initialized above plateau",
+        input: "1 1\n1 3 W\nM",
+        error: "Rover initialized outside plateau",
+      },
+      {
+        scenario: "rover initialized right of plateau",
+        input: "1 1\n2 1 W\nM",
+        error: "Rover initialized outside plateau",
+      },
     ])("should throw error if $scenario", ({ input, error }) => {
       mockFile(input);
       return expect(parseFile(FILEPATH)).rejects.toThrow(error);

@@ -4,14 +4,20 @@ const {
   validateInstructions,
   validatePlateau,
   validateNumberOfLines,
+  validateRoversInsidePlateau,
 } = require("./validations");
 
 const parseFile = async (filePath) => {
   const [plateauLine, ...roverLines] = await readFileLines(filePath);
 
+  const plateau = parsePlateau(plateauLine);
+  const rovers = parseRovers(roverLines);
+
+  validateRoversInsidePlateau(plateau, rovers);
+
   return {
-    plateau: parsePlateau(plateauLine),
-    rovers: parseRovers(roverLines),
+    plateau,
+    rovers,
   };
 };
 

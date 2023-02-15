@@ -28,6 +28,16 @@ const validateNumberOfLines = (lines) => {
   validate(isOdd, "Wrong number of lines in input file");
 };
 
+const validateRoversInsidePlateau = (plateau, rovers) => {
+  const roverOutOfBounds = rovers.some(
+    (rover) =>
+      rover.position.x > plateau.width - 1 ||
+      rover.position.y > plateau.height - 1
+  );
+
+  validate(!roverOutOfBounds, "Rover initialized outside plateau");
+};
+
 const validate = (isValid, message) => {
   if (!isValid) {
     throw new Error(message);
@@ -39,4 +49,5 @@ module.exports = {
   validateRover,
   validateInstructions,
   validateNumberOfLines,
+  validateRoversInsidePlateau,
 };
