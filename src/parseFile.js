@@ -53,6 +53,7 @@ const parseRovers = (roverLines) => {
 
     rovers.push(parseRover(roverLine, instructionsLine));
   }
+
   return rovers;
 };
 
