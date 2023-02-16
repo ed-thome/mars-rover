@@ -1,4 +1,4 @@
-const marsRover = require("./marsRover");
+const marsRover = require("./run");
 const mockFs = require("mock-fs");
 
 describe("run", () => {
