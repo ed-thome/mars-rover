@@ -66,7 +66,7 @@ describe("Rover", () => {
     });
 
     describe("falling off the plateau", () => {
-      it("rover should not fall when it moves within the plateau", () => {
+      it("rover should not fall when rover moves within the plateau", () => {
         const rover = new Rover({ x: 0, y: 0 }, NORTH, plateau);
 
         rover.move();
@@ -74,37 +74,37 @@ describe("Rover", () => {
         expect(rover.isFallen()).toEqual(false);
       });
 
-      it("should fall when it moves over north plateau edge", () => {
-        const rover = new Rover({ x: 1, y: 1 }, NORTH, plateau);
+      it.each([
+        {
+          scenario: "north",
+          position: { x: 1, y: 1 },
+          direction: NORTH,
+        },
+        {
+          scenario: "south",
+          position: { x: 0, y: 0 },
+          direction: SOUTH,
+        },
+        {
+          scenario: "west",
+          position: { x: 0, y: 0 },
+          direction: WEST,
+        },
+        {
+          scenario: "east",
+          position: { x: 1, y: 0 },
+          direction: EAST,
+        },
+      ])(
+        "should fall when rover moves past $scenario plateau edge",
+        ({ position, direction }) => {
+          const rover = new Rover(position, direction, plateau);
 
-        rover.move();
+          rover.move();
 
-        expect(rover.isFallen()).toEqual(true);
-      });
-
-      it("should fall when it moves over south plateau edge", () => {
-        const rover = new Rover({ x: 0, y: 0 }, SOUTH, plateau);
-
-        rover.move();
-
-        expect(rover.isFallen()).toEqual(true);
-      });
-
-      it("should fall when it moves over west plateau edge", () => {
-        const rover = new Rover({ x: 0, y: 0 }, WEST, plateau);
-
-        rover.move();
-
-        expect(rover.isFallen()).toEqual(true);
-      });
-
-      it("should fall when it moves over east plateau edge", () => {
-        const rover = new Rover({ x: 1, y: 0 }, EAST, plateau);
-
-        rover.move();
-
-        expect(rover.isFallen()).toEqual(true);
-      });
+          expect(rover.isFallen()).toEqual(true);
+        }
+      );
 
       it("should not move again after falling", () => {
         const rover = new Rover({ x: 1, y: 1 }, NORTH, plateau);
