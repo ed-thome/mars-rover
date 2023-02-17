@@ -15,6 +15,7 @@
 
 ## Setup
 - Fork your own copy of this codebase and clone it
+  - Alternatively, you can set up your own project from scratch if you want to practice doing that
 - Install [nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
   - nvm lets you switch Node versions between projects
   - This project has an `.nvmrc` file with a specific version of Node
