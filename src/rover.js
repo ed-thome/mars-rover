@@ -39,7 +39,7 @@ class Rover {
   isFallen() {
     return (
       this.position.x === -1 ||
-      this.position.x === this.plateau.height ||
+      this.position.x === this.plateau.width ||
       this.position.y === -1 ||
       this.position.y === this.plateau.height
     );

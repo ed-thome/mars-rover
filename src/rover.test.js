@@ -4,7 +4,7 @@ const {
 } = require("./constants");
 
 describe("Rover", () => {
-  const plateau = { width: 2, height: 2 };
+  const plateau = { width: 2, height: 3 };
 
   describe("turnRight", () => {
     it("should turn rover right 90 degrees", () => {
@@ -77,7 +77,7 @@ describe("Rover", () => {
       it.each([
         {
           scenario: "north",
-          position: { x: 1, y: 1 },
+          position: { x: 1, y: 2 },
           direction: NORTH,
         },
         {
@@ -107,12 +107,12 @@ describe("Rover", () => {
       );
 
       it("should not move again after falling", () => {
-        const rover = new Rover({ x: 1, y: 1 }, NORTH, plateau);
+        const rover = new Rover({ x: 1, y: 2 }, NORTH, plateau);
 
         rover.move();
         rover.move();
 
-        expect(rover.position).toEqual({ x: 1, y: 2 });
+        expect(rover.position).toEqual({ x: 1, y: 3 });
       });
     });
   });
