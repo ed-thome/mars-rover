@@ -37,5 +37,13 @@ describe("run", () => {
 
       expect(mockConsoleLog).toHaveBeenCalledWith("4 0 E (fell)");
     });
+
+    it.skip("should turn and move diagonally", async () => {
+      mockFile("5 5\n3 3 E\nlLlrMR");
+
+      await marsRover.run(FILEPATH);
+
+      expect(mockConsoleLog).toHaveBeenCalledWith("2 4 NE");
+    });
   });
 });
