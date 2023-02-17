@@ -2,7 +2,13 @@ const parseFile = require("./parseFile");
 const mockFs = require("mock-fs");
 const {
   cardinalDirections: { SOUTH, EAST, WEST },
-  instructions: { TURN_LEFT, TURN_RIGHT, MOVE },
+  instructions: {
+    TURN_LEFT,
+    TURN_RIGHT,
+    HALF_TURN_LEFT,
+    HALF_TURN_RIGHT,
+    MOVE,
+  },
 } = require("./constants");
 
 const FILEPATH = "input.txt";
@@ -57,6 +63,25 @@ describe("parseFile", () => {
               position: { x: 10, y: 12 },
               direction: WEST,
               instructions: [MOVE, TURN_RIGHT],
+            },
+          ],
+        },
+      },
+      {
+        scenario: "rover with 45-degree turns",
+        input: "4 4\n1 1 S\nlrlr",
+        output: {
+          plateau: { width: 5, height: 5 },
+          rovers: [
+            {
+              position: { x: 1, y: 1 },
+              direction: SOUTH,
+              instructions: [
+                HALF_TURN_LEFT,
+                HALF_TURN_RIGHT,
+                HALF_TURN_LEFT,
+                HALF_TURN_RIGHT,
+              ],
             },
           ],
         },
