@@ -15,7 +15,9 @@ describe("execute", () => {
 
     const results = executeRovers(initialData);
 
-    expect(results).toEqual([{ position: { x: 0, y: 1 }, direction: NORTH }]);
+    expect(results).toEqual([
+      { position: { x: 0, y: 1 }, direction: NORTH, isFallen: false },
+    ]);
   });
 
   it("should execute move and turn instructions", () => {
@@ -32,7 +34,9 @@ describe("execute", () => {
 
     const results = executeRovers(initialData);
 
-    expect(results).toEqual([{ position: { x: 1, y: 0 }, direction: EAST }]);
+    expect(results).toEqual([
+      { position: { x: 1, y: 0 }, direction: EAST, isFallen: false },
+    ]);
   });
 
   it("should execute instructions for multiple rovers", () => {
@@ -58,11 +62,30 @@ describe("execute", () => {
       {
         position: { x: 0, y: 1 },
         direction: NORTH,
+        isFallen: false,
       },
       {
         position: { x: 0, y: 3 },
         direction: SOUTH,
+        isFallen: false,
       },
     ]);
+  });
+
+  it("should include in results if rover is fallen", () => {
+    const initialData = {
+      plateau: { width: 1, height: 1 },
+      rovers: [
+        {
+          position: { x: 0, y: 0 },
+          direction: NORTH,
+          instructions: [MOVE],
+        },
+      ],
+    };
+
+    const results = executeRovers(initialData);
+
+    expect(results[0].isFallen).toEqual(true);
   });
 });

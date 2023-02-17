@@ -14,7 +14,11 @@ const executeSingleRover =
 
     instructions.forEach(executeInstruction(rover));
 
-    return { position: rover.position, direction: rover.direction };
+    return {
+      position: rover.position,
+      direction: rover.direction,
+      isFallen: rover.isFallen(),
+    };
   };
 
 const executeInstruction = (rover) => (instruction) => {
