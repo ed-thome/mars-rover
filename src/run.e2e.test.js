@@ -38,12 +38,12 @@ describe("run", () => {
       expect(mockConsoleLog).toHaveBeenCalledWith("4 0 E (fell)");
     });
 
-    it.skip("should turn and move diagonally", async () => {
-      mockFile("5 5\n3 3 E\nlLlrMR");
+    it("should turn and move diagonally", async () => {
+      mockFile("5 5\n2 2 E\nlMLMlllrMR");
 
       await marsRover.run(FILEPATH);
 
-      expect(mockConsoleLog).toHaveBeenCalledWith("2 4 NE");
+      expect(mockConsoleLog).toHaveBeenCalledWith("1 3 NW");
     });
   });
 });
