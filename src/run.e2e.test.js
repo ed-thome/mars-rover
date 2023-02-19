@@ -46,12 +46,12 @@ describe("run", () => {
       expect(mockConsoleLog).toHaveBeenCalledWith("1 3 NW");
     });
 
-    it.skip("should move backwards", async () => {
+    it("should move backwards", async () => {
       mockFile("5 5\n2 2 NW\nB");
 
       await marsRover.run(FILEPATH);
 
-      expect(mockConsoleLog).toHaveBeenCalledWith("3 1r NW");
+      expect(mockConsoleLog).toHaveBeenCalledWith("3 1 NW");
     });
   });
 });

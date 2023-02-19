@@ -8,6 +8,7 @@ const {
     HALF_TURN_LEFT,
     HALF_TURN_RIGHT,
     MOVE,
+    BACK,
   },
 } = require("./constants");
 
@@ -96,6 +97,20 @@ describe("parseFile", () => {
               position: { x: 1, y: 1 },
               direction: SOUTH_EAST,
               instructions: [HALF_TURN_LEFT],
+            },
+          ],
+        },
+      },
+      {
+        scenario: "rover with backwards instruction",
+        input: "4 4\n1 1 SE\nB",
+        output: {
+          plateau: { width: 5, height: 5 },
+          rovers: [
+            {
+              position: { x: 1, y: 1 },
+              direction: SOUTH_EAST,
+              instructions: [BACK],
             },
           ],
         },
