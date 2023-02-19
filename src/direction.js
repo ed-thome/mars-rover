@@ -22,7 +22,7 @@ const clockwiseDirections = [
   NORTH_WEST,
 ];
 
-const directionVectors = {
+const movementVectors = {
   [NORTH]: [0, 1],
   [NORTH_EAST]: [1, 1],
   [EAST]: [1, 0],
@@ -34,17 +34,37 @@ const directionVectors = {
 };
 
 module.exports = class Direction {
-  static shift(currentDirection, shiftAmount) {
-    const currentIndex = clockwiseDirections.indexOf(currentDirection);
+  constructor(directionValue) {
+    this.value = directionValue;
+  }
+
+  turnLeft() {
+    this.turn(-2);
+  }
+
+  turnRight() {
+    this.turn(2);
+  }
+
+  halfTurnLeft() {
+    this.turn(-1);
+  }
+
+  halfTurnRight() {
+    this.turn(1);
+  }
+
+  turn(shiftAmount) {
+    const currentIndex = clockwiseDirections.indexOf(this.value);
     const nextIndex =
       (currentIndex + shiftAmount + clockwiseDirections.length) %
       clockwiseDirections.length;
     const nextDirection = clockwiseDirections[nextIndex];
 
-    return nextDirection;
+    this.value = nextDirection;
   }
 
-  static getVector(direction) {
-    return directionVectors[direction];
+  getVector() {
+    return movementVectors[this.value];
   }
 };

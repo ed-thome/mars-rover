@@ -16,35 +16,17 @@ const executeRovers = (initialData) => {
 const executeSingleRover =
   (plateau) =>
   ({ position, direction, instructions }) => {
-    const rover = new Rover(position, direction, plateau);
+    const rover = Rover.create(position, direction, plateau);
 
-    instructions.forEach(executeInstruction(rover));
+    for (const instruction of instructions) {
+      rover.execute(instruction);
+    }
 
     return {
       position: rover.position,
-      direction: rover.direction,
+      direction: rover.direction.value,
       isFallen: rover.isFallen(),
     };
   };
-
-const executeInstruction = (rover) => (instruction) => {
-  switch (instruction) {
-    case MOVE:
-      rover.move();
-      break;
-    case TURN_LEFT:
-      rover.turnLeft();
-      break;
-    case HALF_TURN_LEFT:
-      rover.halfTurnLeft();
-      break;
-    case TURN_RIGHT:
-      rover.turnRight();
-      break;
-    case HALF_TURN_RIGHT:
-      rover.halfTurnRight();
-      break;
-  }
-};
 
 module.exports = executeRovers;

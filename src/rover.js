@@ -1,10 +1,24 @@
 const Direction = require("./direction");
 
+const {
+  instructions: {
+    MOVE,
+    TURN_RIGHT,
+    TURN_LEFT,
+    HALF_TURN_RIGHT,
+    HALF_TURN_LEFT,
+  },
+} = require("./constants");
+
 class Rover {
   constructor(position, direction, plateau) {
     this.position = position;
     this.direction = direction;
     this.plateau = plateau;
+  }
+
+  static create(position, directionValue, plateau) {
+    return new Rover(position, new Direction(directionValue), plateau);
   }
 
   move() {
@@ -16,7 +30,7 @@ class Rover {
   }
 
   updatePosition() {
-    const [xChange, yChange] = Direction.getVector(this.direction);
+    const [xChange, yChange] = this.direction.getVector();
     this.position.x += xChange;
     this.position.y += yChange;
   }
@@ -30,24 +44,24 @@ class Rover {
     );
   }
 
-  turnLeft() {
-    this.turn(-2);
-  }
-
-  turnRight() {
-    this.turn(2);
-  }
-
-  halfTurnRight() {
-    this.turn(1);
-  }
-
-  halfTurnLeft() {
-    this.turn(-1);
-  }
-
-  turn(shiftAmount) {
-    this.direction = Direction.shift(this.direction, shiftAmount);
+  execute(instruction) {
+    switch (instruction) {
+      case MOVE:
+        this.move();
+        break;
+      case TURN_RIGHT:
+        this.direction.turnRight();
+        break;
+      case TURN_LEFT:
+        this.direction.turnLeft();
+        break;
+      case HALF_TURN_RIGHT:
+        this.direction.halfTurnRight();
+        break;
+      case HALF_TURN_LEFT:
+        this.direction.halfTurnLeft();
+        break;
+    }
   }
 }
 
