@@ -15,6 +15,7 @@ const instructions = {
   HALF_TURN_LEFT: "l",
   HALF_TURN_RIGHT: "r",
   MOVE: "M",
+  BACK: "B",
 };
 
 module.exports = {

@@ -3,6 +3,7 @@ const Direction = require("./direction");
 const {
   instructions: {
     MOVE,
+    BACK,
     TURN_RIGHT,
     TURN_LEFT,
     HALF_TURN_RIGHT,
@@ -18,29 +19,10 @@ class Rover {
   }
 
   static create(position, directionValue, plateau) {
-    return new Rover(position, new Direction(directionValue), plateau);
-  }
-
-  move() {
-    if (this.isFallen()) {
-      return;
-    }
-
-    this.updatePosition();
-  }
-
-  updatePosition() {
-    const [xChange, yChange] = this.direction.getVector();
-    this.position.x += xChange;
-    this.position.y += yChange;
-  }
-
-  isFallen() {
-    return (
-      this.position.x === -1 ||
-      this.position.x === this.plateau.width ||
-      this.position.y === -1 ||
-      this.position.y === this.plateau.height
+    return new Rover(
+      Object.assign({}, position),
+      new Direction(directionValue),
+      plateau
     );
   }
 
@@ -48,6 +30,9 @@ class Rover {
     switch (instruction) {
       case MOVE:
         this.move();
+        break;
+      case BACK:
+        this.back();
         break;
       case TURN_RIGHT:
         this.direction.turnRight();
@@ -62,6 +47,34 @@ class Rover {
         this.direction.halfTurnLeft();
         break;
     }
+  }
+
+  back() {
+    this.move(-1);
+  }
+
+  move(multiplier = 1) {
+    if (this.isFallen()) {
+      return;
+    }
+
+    this.updatePosition(multiplier);
+  }
+
+  isFallen() {
+    const xBoundsExceeded =
+      this.position.x <= -1 || this.position.x >= this.plateau.width;
+    const yBoundsExceeded =
+      this.position.y <= -1 || this.position.y >= this.plateau.height;
+
+    return xBoundsExceeded || yBoundsExceeded;
+  }
+
+  updatePosition(multiplier) {
+    const [xChange, yChange] = this.direction.getVector();
+
+    this.position.x += multiplier * xChange;
+    this.position.y += multiplier * yChange;
   }
 }
 

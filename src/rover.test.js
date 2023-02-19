@@ -12,6 +12,7 @@ const {
   },
   instructions: {
     MOVE,
+    BACK,
     TURN_RIGHT,
     TURN_LEFT,
     HALF_TURN_RIGHT,
@@ -91,6 +92,8 @@ describe("Rover", () => {
     });
 
     describe("move", () => {
+      const initialPosition = { x: 1, y: 1 };
+
       it.each([
         {
           scenario: "increment y when facing north",
@@ -133,7 +136,6 @@ describe("Rover", () => {
           expectedPosition: { x: 0, y: 0 },
         },
       ])("should $scenario", ({ direction, expectedPosition }) => {
-        const initialPosition = { x: 1, y: 1 };
         const rover = Rover.create(initialPosition, direction, plateau);
 
         rover.execute(MOVE);
@@ -190,6 +192,16 @@ describe("Rover", () => {
 
           expect(rover.position).toEqual({ x: 1, y: 4 });
         });
+      });
+    });
+
+    describe("back", () => {
+      it("should move in opposite direction", () => {
+        const rover = Rover.create({ x: 1, y: 1 }, NORTH_EAST, plateau);
+
+        rover.execute(BACK);
+
+        expect(rover.position).toEqual({ x: 0, y: 0 });
       });
     });
   });
