@@ -13,7 +13,7 @@ const {
 } = require("./constants");
 
 describe("Rover", () => {
-  const plateau = { width: 2, height: 3 };
+  const plateau = { width: 4, height: 5 };
 
   describe("turnRight", () => {
     it("should turn rover right 90 degrees", () => {
@@ -81,36 +81,54 @@ describe("Rover", () => {
   });
 
   describe("move", () => {
-    it("should increment y when rover is facing north", () => {
-      const rover = new Rover({ x: 0, y: 0 }, NORTH, plateau);
+    it.each([
+      {
+        scenario: "increment y when facing north",
+        direction: NORTH,
+        expectedPosition: { x: 1, y: 2 },
+      },
+      {
+        scenario: "decrement y when facing south",
+        direction: SOUTH,
+        expectedPosition: { x: 1, y: 0 },
+      },
+      {
+        scenario: "increment x when facing east",
+        direction: EAST,
+        expectedPosition: { x: 2, y: 1 },
+      },
+      {
+        scenario: "decrement x when facing west",
+        direction: WEST,
+        expectedPosition: { x: 0, y: 1 },
+      },
+      {
+        scenario: "move diagonally northeast",
+        direction: NORTH_EAST,
+        expectedPosition: { x: 2, y: 2 },
+      },
+      {
+        scenario: "move diagonally northwest",
+        direction: NORTH_WEST,
+        expectedPosition: { x: 0, y: 2 },
+      },
+      {
+        scenario: "move diagonally southeast",
+        direction: SOUTH_EAST,
+        expectedPosition: { x: 2, y: 0 },
+      },
+      {
+        scenario: "move diagonally southwest",
+        direction: SOUTH_WEST,
+        expectedPosition: { x: 0, y: 0 },
+      },
+    ])("should $scenario", ({ direction, expectedPosition }) => {
+      const initialPosition = { x: 1, y: 1 };
+      const rover = new Rover(initialPosition, direction, plateau);
 
       rover.move();
 
-      expect(rover.position).toEqual({ x: 0, y: 1 });
-    });
-
-    it("should decrement y when rover is facing south", () => {
-      const rover = new Rover({ x: 0, y: 1 }, SOUTH, plateau);
-
-      rover.move();
-
-      expect(rover.position).toEqual({ x: 0, y: 0 });
-    });
-
-    it("should increment x when rover is facing east", () => {
-      const rover = new Rover({ x: 0, y: 0 }, EAST, plateau);
-
-      rover.move();
-
-      expect(rover.position).toEqual({ x: 1, y: 0 });
-    });
-
-    it("should decrement y when rover is facing west", () => {
-      const rover = new Rover({ x: 1, y: 0 }, WEST, plateau);
-
-      rover.move();
-
-      expect(rover.position).toEqual({ x: 0, y: 0 });
+      expect(rover.position).toEqual(expectedPosition);
     });
 
     describe("falling off the plateau", () => {
@@ -125,7 +143,7 @@ describe("Rover", () => {
       it.each([
         {
           scenario: "north",
-          position: { x: 1, y: 2 },
+          position: { x: 1, y: 4 },
           direction: NORTH,
         },
         {
@@ -140,7 +158,7 @@ describe("Rover", () => {
         },
         {
           scenario: "east",
-          position: { x: 1, y: 0 },
+          position: { x: 3, y: 0 },
           direction: EAST,
         },
       ])(
@@ -160,7 +178,7 @@ describe("Rover", () => {
         rover.move();
         rover.move();
 
-        expect(rover.position).toEqual({ x: 1, y: 3 });
+        expect(rover.position).toEqual({ x: 1, y: 4 });
       });
     });
   });

@@ -42,14 +42,30 @@ class Rover {
       case NORTH:
         this.position.y++;
         return;
-      case SOUTH:
-        this.position.y--;
+      case NORTH_EAST:
+        this.position.x++;
+        this.position.y++;
         return;
       case EAST:
         this.position.x++;
         return;
+      case SOUTH_EAST:
+        this.position.x++;
+        this.position.y--;
+        return;
+      case SOUTH:
+        this.position.y--;
+        return;
+      case SOUTH_WEST:
+        this.position.x--;
+        this.position.y--;
+        return;
       case WEST:
         this.position.x--;
+        return;
+      case NORTH_WEST:
+        this.position.x--;
+        this.position.y++;
         return;
     }
   }
