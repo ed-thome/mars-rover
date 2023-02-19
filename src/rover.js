@@ -1,26 +1,4 @@
-const {
-  cardinalDirections: {
-    NORTH,
-    NORTH_EAST,
-    NORTH_WEST,
-    SOUTH,
-    SOUTH_EAST,
-    SOUTH_WEST,
-    EAST,
-    WEST,
-  },
-} = require("./constants");
-
-const clockwiseDirections = [
-  NORTH,
-  NORTH_EAST,
-  EAST,
-  SOUTH_EAST,
-  SOUTH,
-  SOUTH_WEST,
-  WEST,
-  NORTH_WEST,
-];
+const Direction = require("./direction");
 
 class Rover {
   constructor(position, direction, plateau) {
@@ -38,36 +16,9 @@ class Rover {
   }
 
   updatePosition() {
-    switch (this.direction) {
-      case NORTH:
-        this.position.y++;
-        return;
-      case NORTH_EAST:
-        this.position.x++;
-        this.position.y++;
-        return;
-      case EAST:
-        this.position.x++;
-        return;
-      case SOUTH_EAST:
-        this.position.x++;
-        this.position.y--;
-        return;
-      case SOUTH:
-        this.position.y--;
-        return;
-      case SOUTH_WEST:
-        this.position.x--;
-        this.position.y--;
-        return;
-      case WEST:
-        this.position.x--;
-        return;
-      case NORTH_WEST:
-        this.position.x--;
-        this.position.y++;
-        return;
-    }
+    const [xChange, yChange] = Direction.getVector(this.direction);
+    this.position.x += xChange;
+    this.position.y += yChange;
   }
 
   isFallen() {
@@ -95,14 +46,8 @@ class Rover {
     this.turn(-1);
   }
 
-  turn(shift) {
-    const currentIndex = clockwiseDirections.indexOf(this.direction);
-    const nextIndex =
-      (currentIndex + shift + clockwiseDirections.length) %
-      clockwiseDirections.length;
-    const nextDirection = clockwiseDirections[nextIndex];
-
-    this.direction = nextDirection;
+  turn(shiftAmount) {
+    this.direction = Direction.shift(this.direction, shiftAmount);
   }
 }
 
