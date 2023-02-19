@@ -1,6 +1,10 @@
 const cardinalDirections = {
   NORTH: "N",
+  NORTH_EAST: "NE",
+  NORTH_WEST: "NW",
   SOUTH: "S",
+  SOUTH_EAST: "SE",
+  SOUTH_WEST: "SW",
   EAST: "E",
   WEST: "W",
 };

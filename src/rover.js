@@ -1,8 +1,26 @@
 const {
-  cardinalDirections: { NORTH, SOUTH, EAST, WEST },
+  cardinalDirections: {
+    NORTH,
+    NORTH_EAST,
+    NORTH_WEST,
+    SOUTH,
+    SOUTH_EAST,
+    SOUTH_WEST,
+    EAST,
+    WEST,
+  },
 } = require("./constants");
 
-const clockwiseDirections = [NORTH, EAST, SOUTH, WEST];
+const clockwiseDirections = [
+  NORTH,
+  NORTH_EAST,
+  EAST,
+  SOUTH_EAST,
+  SOUTH,
+  SOUTH_WEST,
+  WEST,
+  NORTH_WEST,
+];
 
 class Rover {
   constructor(position, direction, plateau) {
@@ -46,17 +64,29 @@ class Rover {
   }
 
   turnLeft() {
-    this.turn(-1);
+    this.turn(-2);
   }
 
   turnRight() {
+    this.turn(2);
+  }
+
+  halfTurnRight() {
     this.turn(1);
   }
 
-  turn(directionShift) {
-    const currentDirectionIndex = clockwiseDirections.indexOf(this.direction);
-    const nextDirectionIndex = (currentDirectionIndex + directionShift + 4) % 4;
-    this.direction = clockwiseDirections[nextDirectionIndex];
+  halfTurnLeft() {
+    this.turn(-1);
+  }
+
+  turn(shift) {
+    const currentIndex = clockwiseDirections.indexOf(this.direction);
+    const nextIndex =
+      (currentIndex + shift + clockwiseDirections.length) %
+      clockwiseDirections.length;
+    const nextDirection = clockwiseDirections[nextIndex];
+
+    this.direction = nextDirection;
   }
 }
 

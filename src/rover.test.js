@@ -1,6 +1,15 @@
 const { Rover } = require("./rover");
 const {
-  cardinalDirections: { NORTH, SOUTH, EAST, WEST },
+  cardinalDirections: {
+    NORTH,
+    NORTH_EAST,
+    NORTH_WEST,
+    SOUTH,
+    SOUTH_EAST,
+    SOUTH_WEST,
+    EAST,
+    WEST,
+  },
 } = require("./constants");
 
 describe("Rover", () => {
@@ -29,6 +38,45 @@ describe("Rover", () => {
       const rover = new Rover({ x: 0, y: 0 }, NORTH);
       rover.turnLeft();
       expect(rover.direction).toEqual(WEST);
+    });
+  });
+
+  describe("halfTurnRight", () => {
+    it("should turn rover right 45 degrees", () => {
+      const rover = new Rover({ x: 0, y: 0 }, NORTH);
+
+      rover.halfTurnRight();
+      expect(rover.direction).toEqual(NORTH_EAST);
+
+      rover.halfTurnRight();
+      expect(rover.direction).toEqual(EAST);
+
+      rover.halfTurnRight();
+      expect(rover.direction).toEqual(SOUTH_EAST);
+
+      rover.halfTurnRight();
+      expect(rover.direction).toEqual(SOUTH);
+
+      rover.halfTurnRight();
+      expect(rover.direction).toEqual(SOUTH_WEST);
+
+      rover.halfTurnRight();
+      expect(rover.direction).toEqual(WEST);
+
+      rover.halfTurnRight();
+      expect(rover.direction).toEqual(NORTH_WEST);
+
+      rover.halfTurnRight();
+      expect(rover.direction).toEqual(NORTH);
+    });
+  });
+
+  describe("halfTurnLeft", () => {
+    it("should turn rover left 45 degrees", () => {
+      const rover = new Rover({ x: 0, y: 0 }, NORTH);
+
+      rover.halfTurnLeft();
+      expect(rover.direction).toEqual(NORTH_WEST);
     });
   });
 
