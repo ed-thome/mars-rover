@@ -1,7 +1,7 @@
 const parseFile = require("./parseFile");
 const mockFs = require("mock-fs");
 const {
-  cardinalDirections: { SOUTH, EAST, WEST },
+  cardinalDirections: { SOUTH, EAST, WEST, SOUTH_EAST },
   instructions: {
     TURN_LEFT,
     TURN_RIGHT,
@@ -82,6 +82,20 @@ describe("parseFile", () => {
                 HALF_TURN_LEFT,
                 HALF_TURN_RIGHT,
               ],
+            },
+          ],
+        },
+      },
+      {
+        scenario: "rover with diagonal direction",
+        input: "4 4\n1 1 SE\nl",
+        output: {
+          plateau: { width: 5, height: 5 },
+          rovers: [
+            {
+              position: { x: 1, y: 1 },
+              direction: SOUTH_EAST,
+              instructions: [HALF_TURN_LEFT],
             },
           ],
         },

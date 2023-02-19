@@ -1,5 +1,5 @@
 const PLATEAU_REGEX = /^[0-9]+ [0-9]+$/;
-const ROVER_REGEX = /^[0-9]+ [0-9]+ [NSEW]$/;
+const ROVER_REGEX = /^[0-9]+ [0-9]+ [NSEW]|NE|NW|SE|SW$/;
 const INSTRUCTIONS_REGEX = /^[LRlr4M]+$/;
 
 const validatePlateau = (plateauLine) => {
