@@ -1,5 +1,11 @@
 const {
-  instructions: { MOVE, TURN_LEFT, TURN_RIGHT },
+  instructions: {
+    MOVE,
+    TURN_LEFT,
+    TURN_RIGHT,
+    HALF_TURN_LEFT,
+    HALF_TURN_RIGHT,
+  },
 } = require("./constants");
 const { Rover } = require("./rover");
 
@@ -29,8 +35,14 @@ const executeInstruction = (rover) => (instruction) => {
     case TURN_LEFT:
       rover.turnLeft();
       break;
+    case HALF_TURN_LEFT:
+      rover.halfTurnLeft();
+      break;
     case TURN_RIGHT:
       rover.turnRight();
+      break;
+    case HALF_TURN_RIGHT:
+      rover.halfTurnRight();
       break;
   }
 };

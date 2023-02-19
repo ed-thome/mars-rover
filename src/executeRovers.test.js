@@ -1,6 +1,12 @@
 const {
-  cardinalDirections: { NORTH, EAST, SOUTH },
-  instructions: { TURN_RIGHT, MOVE },
+  cardinalDirections: { NORTH, EAST, SOUTH, NORTH_EAST },
+  instructions: {
+    TURN_RIGHT,
+    HALF_TURN_RIGHT,
+    TURN_LEFT,
+    HALF_TURN_LEFT,
+    MOVE,
+  },
 } = require("./constants");
 const executeRovers = require("./executeRovers");
 
@@ -27,7 +33,13 @@ describe("execute", () => {
         {
           position: { x: 0, y: 0 },
           direction: NORTH,
-          instructions: [TURN_RIGHT, MOVE],
+          instructions: [
+            TURN_RIGHT,
+            HALF_TURN_LEFT,
+            HALF_TURN_LEFT,
+            HALF_TURN_RIGHT,
+            MOVE,
+          ],
         },
       ],
     };
@@ -35,7 +47,7 @@ describe("execute", () => {
     const results = executeRovers(initialData);
 
     expect(results).toEqual([
-      { position: { x: 1, y: 0 }, direction: EAST, isFallen: false },
+      { position: { x: 1, y: 1 }, direction: NORTH_EAST, isFallen: false },
     ]);
   });
 
