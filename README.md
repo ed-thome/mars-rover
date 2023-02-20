@@ -98,6 +98,9 @@ MMRMMRMRRM
 . . . . . →
 . . . . . .
 ```
+- Extra credit: animate the movement of the rovers on the console one frame at a time
+  - All the rovers should update together per frame
+  - [This library](https://www.npmjs.com/package/chalk-animation) will help
 
 ### Module 5 - Plateau obstacles
   - Add rocks which block the rover from moving
