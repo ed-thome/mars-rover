@@ -18,7 +18,7 @@ const {
     HALF_TURN_RIGHT,
     HALF_TURN_LEFT,
   },
-} = require("./constants");
+} = require("../constants");
 
 describe("Rover", () => {
   const plateau = { width: 4, height: 5 };

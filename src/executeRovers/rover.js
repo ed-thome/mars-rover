@@ -9,7 +9,7 @@ const {
     HALF_TURN_RIGHT,
     HALF_TURN_LEFT,
   },
-} = require("./constants");
+} = require("../constants");
 
 class Rover {
   constructor(position, direction, plateau) {

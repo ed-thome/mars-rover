@@ -7,7 +7,7 @@ const {
     HALF_TURN_LEFT,
     MOVE,
   },
-} = require("./constants");
+} = require("../constants");
 const executeRovers = require("./executeRovers");
 
 describe("execute", () => {

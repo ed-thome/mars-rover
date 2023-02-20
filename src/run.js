@@ -9,4 +9,4 @@ const run = async (filename) => {
   printOutput(results)
 };
 
-module.exports = {run}
+module.exports = run

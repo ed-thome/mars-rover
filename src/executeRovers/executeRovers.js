@@ -1,12 +1,3 @@
-const {
-  instructions: {
-    MOVE,
-    TURN_LEFT,
-    TURN_RIGHT,
-    HALF_TURN_LEFT,
-    HALF_TURN_RIGHT,
-  },
-} = require("./constants");
 const { Rover } = require("./rover");
 
 const executeRovers = (initialData) => {

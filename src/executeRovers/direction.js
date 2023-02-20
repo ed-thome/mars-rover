@@ -9,7 +9,7 @@ const {
     EAST,
     WEST,
   },
-} = require("./constants");
+} = require("../constants");
 
 const clockwiseDirections = [
   NORTH,
