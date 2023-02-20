@@ -33,7 +33,7 @@ const movementVectors = {
   [NORTH_WEST]: [-1, 1],
 };
 
-module.exports = class Direction {
+class Direction {
   constructor(directionValue) {
     this.value = directionValue;
   }
@@ -68,3 +68,5 @@ module.exports = class Direction {
     return movementVectors[this.value];
   }
 };
+
+module.exports = Direction;

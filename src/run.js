@@ -1,7 +1,12 @@
-console.log();
+const parseFile = require("./parseFile");
+const executeRovers = require("./executeRovers");
+const printOutput = require("./printOutput");
 
-const run = () => {
-  console.log("Welcome to Mars!");
+
+const run = async (filename) => {
+  const initialData = await parseFile(filename);
+  const results = executeRovers(initialData);
+  printOutput(results)
 };
 
-run();
+module.exports = {run}

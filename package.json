@@ -4,7 +4,7 @@
   "description": "Mars Rover practice problem",
   "main": "index.js",
   "scripts": {
-    "start": "node src/marsRover.js",
+    "start": "node src/index.js",
     "test": "jest",
     "test:watch": "jest --watch"
   },
